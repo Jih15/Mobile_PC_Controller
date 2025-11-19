@@ -1,0 +1,6 @@
+- Real-time video streaming PC → mobile (sub-80ms latency)
+- Mobile → PC input mapping using DataChannel/UDP
+- Gyro steering support
+- Wireless + wired connection support
+- Platform: Windows / Linux
+- GPU encoding: NVENC RTX 3050
