@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e553704c-0876-4949-a1c8-8497ae3b6503" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/extension_discovery/vs_code.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_graph.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/analysis_options.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/controls.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/dtd/dtd_services.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/dtd/editor_service.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/dtd/utils.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/generated_preview.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/theme/_ide_theme_desktop.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/theme/_ide_theme_web.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/theme/ide_theme.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/theme/theme.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/utils.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/utils/color_utils.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/utils/url/_url_stub.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/utils/url/_url_web.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/utils/url/url.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/widget_preview.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/widget_preview_inspector_service.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/widget_preview_rendering.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/lib/src/widget_preview_scaffold_controller.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/preview_manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/pubspec.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/pubspec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/web/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/web/icons/Icon-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/web/icons/Icon-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/web/icons/Icon-maskable-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/web/icons/Icon-maskable-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/widget_preview_scaffold/web/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controllers/connection_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/connection_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controllers/input_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/input_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controllers/streaming_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/streaming_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/routes/app_pages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/routes/app_pages.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pc_host/target/flycheck0/stderr" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/flycheck0/stderr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pc_host/target/flycheck0/stdout" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/flycheck0/stdout" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
@@ -13,24 +89,73 @@
       </file>
     </leaf>
   </component>
-  <component name="ToolWindowManager">
-    <editor active="true" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-    </layout>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Jih15&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Jih15/Mobile_PC_Controller.git&quot;,
+    &quot;accountId&quot;: &quot;86e9cf45-5bc6-4598-b6e6-086060884e1e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="35hVfeZEanGPoFQCH1lnDaV3GgW" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-    </navigator>
+    <navigator currentView="ProjectPane" proportions="" version="1" />
     <panes>
       <pane id="ProjectPane">
         <option name="show-excluded-files" value="false" />
       </pane>
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="dart.analysis.tool.window.force.activate" value="true" />
-    <property name="show.migrate.to.gradle.popup" value="false" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flutter.main.dart.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "android.gradle.sync.needed": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "develop",
+    "io.flutter.project.isFirstOpen": "true",
+    "io.flutter.reload.alreadyRun": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/My-Project/flutter/mobile_pc_controller/mobile_app",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e553704c-0876-4949-a1c8-8497ae3b6503" name="Changes" comment="" />
+      <created>1763562394777</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763562394777</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+    </layout>
   </component>
 </project>
