@@ -3,14 +3,10 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-  static const HOME = _Paths.HOME;
-  static const CONNECT = _Paths.CONNECT;
   static const CONTROLLER = _Paths.CONTROLLER;
 }
 
 abstract class _Paths {
   _Paths._();
-  static const HOME = '/home';
-  static const CONNECT = '/connect';
   static const CONTROLLER = '/controller';
 }
