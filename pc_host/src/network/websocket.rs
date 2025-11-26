@@ -1,35 +1,63 @@
-use anyhow::Result;
-use tokio_tungstenite::accept_async;
+use std::net::SocketAddr;
 use tokio::net::TcpListener;
-use futures_util::{StreamExt};
-
-use crate::input::input_handler::process_input_event;
-use crate::utils::config::WS_PORT;
+use futures::{StreamExt, SinkExt};
+use tokio_tungstenite::{accept_async, tungstenite::protocol::Message};
+use log::{info, warn, error};
 
 use enigo::{Enigo, Settings};
+use crate::input::input_handler::process_input_event;
 
-pub async fn start_websocket_server() -> Result<()> {
-    let addr = format!("0.0.0.0:{}", WS_PORT);
-    let listener = TcpListener::bind(&addr).await?;
-    log::info!("WebSocket listening on ws://{}", addr);
+pub async fn start_websocket_server(addr: &str) -> anyhow::Result<()> {
+    let listener = TcpListener::bind(addr).await?;
+    info!("WebSocket Server running at ws://{}", addr);
 
-    // Enigo instance dipakai bersama handler
-    let settings = Settings::default();
-    let mut enigo = Enigo::new(&settings)?;
-
-    loop {
-        let (stream, _) = listener.accept().await?;
-        let mut ws = accept_async(stream).await?;
-
-        log::info!("Client connected!");
-
-        while let Some(msg) = ws.next().await {
-            let msg = msg?;
-
-            if msg.is_text() {
-                let json = msg.to_text()?;
-                let _ = process_input_event(json, &mut enigo).await;
+    while let Ok((stream, addr)) = listener.accept().await {
+        tokio::spawn(async move {
+            if let Err(e) = handle_client(stream, addr).await {
+                error!("Client handler error: {:?}", e);
             }
+        });
+    }
+
+    Ok(())
+}
+
+async fn handle_client(stream: tokio::net::TcpStream, addr: SocketAddr) -> anyhow::Result<()> {
+    info!("Client connected: {}", addr);
+
+    let ws_stream = accept_async(stream).await?;
+    let (mut write, mut read) = ws_stream.split();
+
+    let mut enigo = Enigo::new(&Settings::default())
+        .expect("Failed to init Enigo");
+
+    let _ = write.send(Message::Text(r#"{"type":"welcome"}"#.into())).await;
+
+    while let Some(msg) = read.next().await {
+        match msg {
+            Ok(Message::Text(text)) => {
+                info!("Received: {}", text);
+
+                if let Err(e) = process_input_event(&text, &mut enigo).await {
+                    error!("Failed to process input: {:?}", e);
+                }
+            }
+
+            Ok(Message::Binary(_)) => warn!("Binary message ignored"),
+
+            Ok(Message::Close(_)) => {
+                info!("Client disconnected: {}", addr);
+                break;
+            }
+
+            Err(e) => {
+                error!("WebSocket error: {:?}", e);
+                break;
+            }
+
+            _ => {}
         }
     }
+
+    Ok(())
 }

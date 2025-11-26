@@ -1,4 +1,6 @@
+use env_logger::Env;
+
 pub fn init_logger() {
-    env_logger::init();
-    log::info!("Logger initialized");
+    let env = Env::default().filter_or("RUST_LOG", "info");
+    env_logger::init_from_env(env);
 }
