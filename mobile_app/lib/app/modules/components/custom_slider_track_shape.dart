@@ -64,9 +64,9 @@ class CustomSliderTrackShape extends SliderTrackShape with BaseSliderTrackShape 
       ui.Offset(thumbCenter.dx, 0),
       [
         //first gradient color
-        const Color(0xFFFD6006),
+        const ui.Color.fromARGB(255, 18, 54, 121),
         //second gradient color
-        const Color(0xFFFFB801),
+        const ui.Color.fromARGB(255, 41, 163, 172),
       ],
     );
 
