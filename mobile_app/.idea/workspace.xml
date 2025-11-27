@@ -5,11 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e553704c-0876-4949-a1c8-8497ae3b6503" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/modules/components/custom_slider_track_shape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/modules/components/custom_slider_track_shape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/modules/controller/controllers/gyro_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/modules/controller/controllers/gyro_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/modules/controller/views/controller_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/modules/controller/views/controller_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/.rustc_info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/flycheck0/stderr" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/flycheck0/stderr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/flycheck0/stdout" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/flycheck0/stdout" afterDir="false" />
