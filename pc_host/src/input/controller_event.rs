@@ -1,34 +1,12 @@
+// src/input/controller_event.rs
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 #[serde(tag = "type")]
-
 pub enum ControllerEvent {
-    // Gyro Steering -1..1
-    Gyro {
-        value: f32,
-    },
-
-    // Vertical Slider (Throttle)
-    Throttle {
-        value: f32,
-    },
-
-    // Vertical Slider (Brake)
-    Brake {
-        value: f32,
-    },
-
-    // JoyStick
-    JoyStick {
-        stick: String,
-        x: f32,
-        y: f32,
-    },
-
-    // Button
-    Button {
-        key: String,
-        pressed: bool
-    }
+    Gyro { value: f32 },
+    Throttle { value: f32 },
+    Brake { value: f32 },
+    Joystick { stick: String, x: f32, y: f32 },
+    Button { key: String, pressed: bool },
 }

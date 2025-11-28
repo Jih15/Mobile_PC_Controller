@@ -1,45 +1,44 @@
-use std::time::Duration;
+// src/controller/state.rs
 use tokio::sync::Mutex;
 use once_cell::sync::Lazy;
-use vigem::types::target;
 
-#[derive(Clone,Copy,Debug)]
+#[derive(Clone, Copy, Debug)]
 pub enum ResponseCurve {
     Linear,
-    Exponential(f32),
+    Exponential(f32), // exponent factor > 0 (e.g. 2.0)
 }
 
 #[derive(Debug)]
 pub struct AxisState {
-    pub raw: f32,
-    pub filtered: f32,
+    pub raw: f32,      // last raw input (-1..1 or 0..1)
+    pub filtered: f32, // after smoothing / deadzone / curve
 }
 
 impl AxisState {
     pub fn new() -> Self {
-        Self { raw: 0.0, filtered: 0.0}
-    }    
+        Self { raw: 0.0, filtered: 0.0 }
+    }
 }
 
 #[derive(Debug)]
 pub struct ControllerState {
-    // Sticks : -1..1
-    pub left_x : AxisState,
-    pub left_y : AxisState,
-    pub right_x : AxisState,
-    pub right_y : AxisState,
+    // sticks: -1..1
+    pub left_x: AxisState,
+    pub left_y: AxisState,
+    pub right_x: AxisState,
+    pub right_y: AxisState,
 
-    // Triggers : 0..1
-    pub left_trigger : AxisState,
-    pub right_trigger : AxisState,
+    // triggers: 0..1
+    pub left_trigger: AxisState,
+    pub right_trigger: AxisState,
 
-    // Buttons
+    // buttons: simple map of names -> pressed
     pub buttons: std::collections::HashMap<String, bool>,
 
-    // Filter params
-    pub smoothing_alpha: f32,
-    pub deadzone: f32,
-    pub auto_center_rate: f32,
+    // filter params
+    pub smoothing_alpha: f32, // 0..1 (0 = no smoothing, 1 = hold)
+    pub deadzone: f32,        // 0..1
+    pub auto_center_rate: f32, // per second decay toward 0 for axes that should return
     pub response_curve: ResponseCurve,
 }
 
@@ -53,47 +52,48 @@ impl ControllerState {
             left_trigger: AxisState::new(),
             right_trigger: AxisState::new(),
             buttons: std::collections::HashMap::new(),
-            smoothing_alpha: 0.5,
+            smoothing_alpha: 0.25, // default low-pass (smaller = smoother)
             deadzone: 0.05,
-            auto_center_rate: 4.0,
+            auto_center_rate: 4.0, // decay per second
             response_curve: ResponseCurve::Linear,
         }
     }
 
-    /// Update raw value for an axis
-    pub fn set_raw_axis(&mut self, axis: &str, value:f32) {
+    /// Update raw value for an axis (value range expected by caller)
+    pub fn set_raw_axis(&mut self, axis: &str, value: f32) {
         let v = value.clamp(-1.0, 1.0);
         match axis {
             "left_x" => self.left_x.raw = v,
             "left_y" => self.left_y.raw = v,
             "right_x" => self.right_x.raw = v,
             "right_y" => self.right_y.raw = v,
-            "left_trigger" => self.left_trigger.raw = (value.max(0.0)).clamp(0.0, 1.0),
-            "right_trigger" => self.right_trigger.raw = (value.max(0.0)).clamp(0.0, 1.0),
-            _ => (),
+            "lt" => self.left_trigger.raw = (value.max(0.0)).clamp(0.0, 1.0),
+            "rt" => self.right_trigger.raw = (value.max(0.0)).clamp(0.0, 1.0),
+            _ => {}
         }
     }
 
-    pub fn set_button(&mut self, key: &str, pressed:bool) {
+    pub fn set_button(&mut self, key: &str, pressed: bool) {
         self.buttons.insert(key.to_string(), pressed);
     }
 
-    // Deadzone
-    fn apply_deadzone(&self, v:f32) -> f32 {
+    /// Apply deadzone
+    fn apply_deadzone(&self, v: f32) -> f32 {
         let dz = self.deadzone;
-        if dz <= 0.0 {return  v;}
-        if v.abs() < dz {0.0} else {
+        if dz <= 0.0 { return v; }
+        if v.abs() < dz { 0.0 } else {
+            // re-scale so remaining range maps to 0..1
             let sign = v.signum();
             let rem = (v.abs() - dz) / (1.0 - dz);
-            sign * rem.clamp(0.0, 1.0) 
+            sign * rem.clamp(0.0, 1.0)
         }
     }
 
-    // Response Curve
+    /// Apply response curve: linear or exponential (preserve sign)
     fn apply_response_curve(&self, v: f32) -> f32 {
         match self.response_curve {
             ResponseCurve::Linear => v,
-            ResponseCurve::Exponential(exp) => if exp > 0.0 => {
+            ResponseCurve::Exponential(exp) if exp > 0.0 => {
                 let sign = v.signum();
                 let mag = v.abs();
                 sign * mag.powf(exp)
@@ -102,24 +102,26 @@ impl ControllerState {
         }
     }
 
-    // Low pass step
+    /// Single low-pass step: filtered = alpha * raw + (1-alpha) * filtered
     fn low_pass_step(&self, raw: f32, filtered: f32) -> f32 {
         let a = self.smoothing_alpha.clamp(0.0, 1.0);
         a * raw + (1.0 - a) * filtered
     }
 
-    // Update per tick
-    pub fn tick(&mut self. dt: f32) {
+    /// Apply updates per tick (dt in seconds). This applies deadzone, smoothing,
+    /// auto-centering, and response curve in a stable order.
+    pub fn tick(&mut self, dt: f32) {
+        // helper closure for -1..1 axes
         let process_axis = |raw: f32, filtered: f32, state: &ControllerState| -> f32 {
-            // 1. Raw already set
-            // 2. Apply deadzone
+            // 1. raw already set
+            // 2. apply deadzone on raw
             let after_dead = state.apply_deadzone(raw);
 
-            // 3. Auto Center
+            // 3. auto-center: if raw is zero and filtered not zero, decay filtered toward 0
             let mut target = after_dead;
             if after_dead == 0.0 && filtered != 0.0 && state.auto_center_rate > 0.0 {
+                // move filtered toward zero by rate*dt
                 let decay = state.auto_center_rate * dt;
-                
                 if filtered.abs() <= decay {
                     target = 0.0;
                 } else {
@@ -127,8 +129,10 @@ impl ControllerState {
                 }
             }
 
-            let smoothed = state.low_pass_step(target ,filered);
+            // 4. smoothing (low-pass)
+            let smoothed = state.low_pass_step(target, filtered);
 
+            // 5. response curve (after smoothing)
             state.apply_response_curve(smoothed)
         };
 
