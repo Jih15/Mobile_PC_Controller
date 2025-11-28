@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_joystick/flutter_joystick.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app/app/modules/components/custom_progress_line.dart';
 import 'package:mobile_app/app/modules/components/vertical_slider.dart';
@@ -39,12 +41,14 @@ class ControllerView extends GetView<GyroController> {
                   );
                 }),
 
-                const Spacer(),
+                // const Spacer(),
+                Gap(32),
 
                 // Kontrol utama
                 Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Row(
                         children: [
@@ -52,10 +56,53 @@ class ControllerView extends GetView<GyroController> {
                           const Spacer(),
 
                           // Box kiri
-                          Container(
-                            width: 240,
-                            height: 240,
-                            color: Colors.grey,
+                          Column(
+                            children: [
+                              Container(
+                                width: 120,
+                                height: 120,
+                                color: Colors.grey,
+                                child: Center(
+                                  child: Text('data'),
+                                ),
+                              ),
+                              Gap(24),
+                              SizedBox(
+                                width: 120,
+                                height: 120,
+                                child: Center(
+                                  child: Joystick(
+                                    base: Container(
+                                      decoration: BoxDecoration(
+                                        color: Color(0xff252831),
+                                        shape: BoxShape.circle
+                                      ),
+                                    ),
+                                    listener: (details) {
+
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Spacer(),
+
+                          Column(
+                            children: [
+                              Container(
+                                width: 120,
+                                height: 120,
+                                color: Colors.grey,
+                              ),
+                              Gap(24),
+                              Container(
+                                width: 120,
+                                height: 120,
+                                color: Colors.grey,
+                              ),
+                            ],
                           ),
 
                           const Spacer(),
@@ -73,10 +120,38 @@ class ControllerView extends GetView<GyroController> {
                           const Spacer(),
 
                           // Box kanan
-                          Container(
-                            width: 240,
-                            height: 240,
-                            color: Colors.grey,
+                          Column(
+                            children: [
+                              Container(
+                                width: 120,
+                                height: 120,
+                                color: Colors.grey,
+                              ),
+                              Gap(24),
+                              Container(
+                                width: 120,
+                                height: 120,
+                                color: Colors.grey,
+                              ),
+                            ],
+                          ),
+
+                          Spacer(),
+
+                          Column(
+                            children: [
+                              Container(
+                                width: 120,
+                                height: 120,
+                                color: Colors.grey,
+                              ),
+                              Gap(24),
+                              Container(
+                                width: 120,
+                                height: 120,
+                                color: Colors.grey,
+                              ),
+                            ],
                           ),
 
                           const Spacer(),
@@ -89,15 +164,11 @@ class ControllerView extends GetView<GyroController> {
               ],
             ),
 
-            // ==================================
-            //        POPUP SETTINGS FINAL
-            // ==================================
             Obx(() {
               if (!controller.showSettings.value) return const SizedBox();
 
               return Stack(
                 children: [
-                  // BACKDROP (fade mengikuti opacity animation)
                   FadeTransition(
                     opacity: controller.opacityAnim,
                     child: GestureDetector(
@@ -108,7 +179,6 @@ class ControllerView extends GetView<GyroController> {
                     ),
                   ),
 
-                  // POPUP
                   Center(
                     child: ScaleTransition(
                       scale: controller.scaleAnim,
@@ -152,7 +222,6 @@ class ControllerView extends GetView<GyroController> {
 
                               const SizedBox(height: 20),
 
-                              // SENSITIVITY SLIDER
                               Obx(() => Column(
                                 children: [
                                   Text(
