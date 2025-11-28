@@ -1,2 +1,2 @@
-pub mod input_handler;
-pub mod gamepad;
+pub mod controller_event;
+pub mod vigem_mapper;

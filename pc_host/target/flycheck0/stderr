@@ -1,60 +1,187 @@
-   0.175997500s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: fingerprint error for pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host)/Check { test: false }/TargetInner { name: "pc_host", doc: true, ..: with_path("D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\main.rs", Edition2021) }
-   0.176050200s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:     err: failed to read `D:\My-Project\flutter\mobile_pc_controller\pc_host\target\debug\.fingerprint\pc_host-a2a186c37884c5d5\bin-pc_host`
+   0.225932348s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: fingerprint error for pc_host v0.1.0 (/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host)/Check { test: false }/TargetInner { name: "pc_host", doc: true, ..: with_path("/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host/src/main.rs", Edition2021) }
+   0.225959139s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:     err: failed to read `/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host/target/debug/.fingerprint/pc_host-8b7103d2b180b54a/bin-pc_host`
 
 Caused by:
-    The system cannot find the file specified. (os error 2)
+    No such file or directory (os error 2)
 
 Stack backtrace:
-   0: git_midx_writer_dump
-   1: git_midx_writer_dump
-   2: git_midx_writer_dump
-   3: git_midx_writer_dump
-   4: git_filter_source_repo
-   5: git_filter_source_repo
-   6: git_filter_source_repo
-   7: git_filter_source_repo
-   8: git_filter_source_repo
-   9: git_filter_source_repo
-  10: git_filter_source_repo
-  11: git_libgit2_prerelease
-  12: <unknown>
-  13: <unknown>
-  14: <unknown>
-  15: <unknown>
-  16: git_midx_writer_dump
-  17: git_filter_source_repo
-  18: git_midx_writer_dump
-  19: BaseThreadInitThunk
-  20: RtlUserThreadStart
-   0.213248300s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: fingerprint error for pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host)/Check { test: true }/TargetInner { name: "pc_host", doc: true, ..: with_path("D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\main.rs", Edition2021) }
-   0.213275200s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:     err: failed to read `D:\My-Project\flutter\mobile_pc_controller\pc_host\target\debug\.fingerprint\pc_host-f05d0baf17a1c4f9\test-bin-pc_host`
+   0: cargo_util::paths::read_bytes
+   1: cargo_util::paths::read
+   2: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   3: cargo::core::compiler::fingerprint::prepare_target
+   4: cargo::core::compiler::compile
+   5: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   6: cargo::ops::cargo_compile::compile_ws
+   7: cargo::ops::cargo_compile::compile_with_exec
+   8: cargo::ops::cargo_compile::compile
+   9: cargo::commands::check::exec
+  10: <cargo::cli::Exec>::exec
+  11: cargo::main
+  12: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  13: std::rt::lang_start::<()>::{closure#0}
+  14: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/core/src/ops/function.rs:287:21
+  15: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  16: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  17: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  18: std::rt::lang_start_internal::{{closure}}
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:175:24
+  19: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  20: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  21: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  22: std::rt::lang_start_internal
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:171:5
+  23: main
+  24: __libc_start_call_main
+             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+  25: __libc_start_main_impl
+             at ./csu/../csu/libc-start.c:360:3
+  26: <unknown>
+   0.360213065s  INFO prepare_target{force=false package_id=vigem v0.9.1 target="vigem"}: cargo::core::compiler::fingerprint: fingerprint error for vigem v0.9.1/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("vigem", ["lib"], "/home/zaqaul-f/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/vigem-0.9.1/src/lib.rs", Edition2018) }
+   0.360227401s  INFO prepare_target{force=false package_id=vigem v0.9.1 target="vigem"}: cargo::core::compiler::fingerprint:     err: failed to read `/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host/target/debug/.fingerprint/vigem-82e5eb6ec1a01c95/lib-vigem`
 
 Caused by:
-    The system cannot find the file specified. (os error 2)
+    No such file or directory (os error 2)
 
 Stack backtrace:
-   0: git_midx_writer_dump
-   1: git_midx_writer_dump
-   2: git_midx_writer_dump
-   3: git_midx_writer_dump
-   4: git_filter_source_repo
-   5: git_filter_source_repo
-   6: git_filter_source_repo
-   7: git_filter_source_repo
-   8: git_filter_source_repo
-   9: git_filter_source_repo
-  10: git_filter_source_repo
-  11: git_libgit2_prerelease
-  12: <unknown>
-  13: <unknown>
-  14: <unknown>
-  15: <unknown>
-  16: git_midx_writer_dump
-  17: git_filter_source_repo
-  18: git_midx_writer_dump
-  19: BaseThreadInitThunk
-  20: RtlUserThreadStart
-    Checking pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host)
-error: could not compile `pc_host` (bin "pc_host" test) due to 4 previous errors
+   0: cargo_util::paths::read_bytes
+   1: cargo_util::paths::read
+   2: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   3: cargo::core::compiler::fingerprint::prepare_target
+   4: cargo::core::compiler::compile
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::main
+  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  14: std::rt::lang_start::<()>::{closure#0}
+  15: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/core/src/ops/function.rs:287:21
+  16: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  17: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  18: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  19: std::rt::lang_start_internal::{{closure}}
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:175:24
+  20: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  21: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  22: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  23: std::rt::lang_start_internal
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:171:5
+  24: main
+  25: __libc_start_call_main
+             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+  26: __libc_start_main_impl
+             at ./csu/../csu/libc-start.c:360:3
+  27: <unknown>
+   0.362357227s  INFO prepare_target{force=false package_id=vigem-client v0.1.4 target="vigem_client"}: cargo::core::compiler::fingerprint: fingerprint error for vigem-client v0.1.4/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("vigem_client", ["lib"], "/home/zaqaul-f/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/vigem-client-0.1.4/src/lib.rs", Edition2018) }
+   0.362367779s  INFO prepare_target{force=false package_id=vigem-client v0.1.4 target="vigem_client"}: cargo::core::compiler::fingerprint:     err: failed to read `/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host/target/debug/.fingerprint/vigem-client-b36c07562ae44327/lib-vigem_client`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: cargo_util::paths::read_bytes
+   1: cargo_util::paths::read
+   2: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   3: cargo::core::compiler::fingerprint::prepare_target
+   4: cargo::core::compiler::compile
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::main
+  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  14: std::rt::lang_start::<()>::{closure#0}
+  15: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/core/src/ops/function.rs:287:21
+  16: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  17: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  18: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  19: std::rt::lang_start_internal::{{closure}}
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:175:24
+  20: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  21: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  22: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  23: std::rt::lang_start_internal
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:171:5
+  24: main
+  25: __libc_start_call_main
+             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+  26: __libc_start_main_impl
+             at ./csu/../csu/libc-start.c:360:3
+  27: <unknown>
+   0.374737141s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: fingerprint error for pc_host v0.1.0 (/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host)/Check { test: true }/TargetInner { name: "pc_host", doc: true, ..: with_path("/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host/src/main.rs", Edition2021) }
+   0.374752039s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:     err: failed to read `/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/pc_host/target/debug/.fingerprint/pc_host-e51da1be8aa03f67/test-bin-pc_host`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: cargo_util::paths::read_bytes
+   1: cargo_util::paths::read
+   2: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   3: cargo::core::compiler::fingerprint::prepare_target
+   4: cargo::core::compiler::compile
+   5: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   6: cargo::ops::cargo_compile::compile_ws
+   7: cargo::ops::cargo_compile::compile_with_exec
+   8: cargo::ops::cargo_compile::compile
+   9: cargo::commands::check::exec
+  10: <cargo::cli::Exec>::exec
+  11: cargo::main
+  12: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  13: std::rt::lang_start::<()>::{closure#0}
+  14: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/core/src/ops/function.rs:287:21
+  15: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  16: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  17: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  18: std::rt::lang_start_internal::{{closure}}
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:175:24
+  19: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  20: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  21: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  22: std::rt::lang_start_internal
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:171:5
+  23: main
+  24: __libc_start_call_main
+             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+  25: __libc_start_main_impl
+             at ./csu/../csu/libc-start.c:360:3
+  26: <unknown>
+    Checking vigem-client v0.1.4
+    Checking vigem v0.9.1
+error: could not compile `vigem` (lib) due to 4 previous errors
 warning: build failed, waiting for other jobs to finish...
-error: could not compile `pc_host` (bin "pc_host") due to 4 previous errors
+error: could not compile `vigem-client` (lib) due to 81 previous errors

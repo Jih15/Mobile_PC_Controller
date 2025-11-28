@@ -1,6 +1,7 @@
-use env_logger::Env;
+use env_logger;
 
 pub fn init_logger() {
-    let env = Env::default().filter_or("RUST_LOG", "info");
-    env_logger::init_from_env(env);
+    env_logger::builder()
+        .filter_level(log::LevelFilter::Info)
+        .init();
 }

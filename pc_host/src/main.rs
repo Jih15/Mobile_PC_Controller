@@ -1,18 +1,18 @@
 mod network;
 mod utils;
 mod input;
+mod controller;
 
 use utils::logger::init_logger;
 use network::websocket::start_websocket_server;
 
 #[tokio::main]
-async fn main() -> anyhow::Result<()> {
+async fn main(){
     init_logger();
 
-    log::info!("📡 PC Host starting...");
+    log::info!("PC Host Running...");
 
-    let addr = "0.0.0.0:9001";
-    start_websocket_server(addr).await?;
-
-    Ok(())
+    if let Err(e) = start_websocket_server().await {
+        log::error!("Websocket Error: {}", e);
+    }
 }
