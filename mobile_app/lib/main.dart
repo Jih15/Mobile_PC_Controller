@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mobile_app/app/services/websocket_service.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async{
@@ -10,6 +11,8 @@ void main() async{
     DeviceOrientation.landscapeLeft,
     // DeviceOrientation.landscapeRight,
   ]);
+
+  await Get.putAsync<WebSocketService>(() async => WebSocketService().init());
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 

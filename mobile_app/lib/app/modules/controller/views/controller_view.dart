@@ -12,7 +12,8 @@ class ControllerView extends GetView<GyroController> {
 
   double _normalize(double raw, double sensitivity) {
     double adjusted = raw * sensitivity;
-    return (adjusted / 10).clamp(-1.0, 1.0);
+    // return (adjusted / 10).clamp(-1.0, 1.0);
+    return adjusted.clamp(-1,1);
   }
 
   @override
@@ -91,12 +92,14 @@ class ControllerView extends GetView<GyroController> {
 
                           Column(
                             children: [
+                              // Button
                               Container(
                                 width: 120,
                                 height: 120,
                                 color: Colors.grey,
                               ),
                               Gap(24),
+                              // Button
                               Container(
                                 width: 120,
                                 height: 120,
@@ -140,12 +143,14 @@ class ControllerView extends GetView<GyroController> {
 
                           Column(
                             children: [
+                              // Button
                               Container(
                                 width: 120,
                                 height: 120,
                                 color: Colors.grey,
                               ),
                               Gap(24),
+                              // Button
                               Container(
                                 width: 120,
                                 height: 120,

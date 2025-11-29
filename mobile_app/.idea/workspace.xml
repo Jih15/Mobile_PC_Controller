@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e553704c-0876-4949-a1c8-8497ae3b6503" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/modules/controller/views/controller_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/modules/controller/views/controller_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/routes/app_pages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/routes/app_pages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/routes/app_routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/routes/app_routes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mobile_app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/.rustc_info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/flycheck0/stderr" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/flycheck0/stderr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/flycheck0/stdout" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/flycheck0/stdout" afterDir="false" />
@@ -111,7 +104,7 @@
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/mobile_app",
-    "settings.editor.selected.configurable": "experimental",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>

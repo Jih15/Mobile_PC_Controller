@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_app/app/services/websocket_service.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 class GyroController extends GetxController with GetSingleTickerProviderStateMixin {
@@ -11,6 +12,8 @@ class GyroController extends GetxController with GetSingleTickerProviderStateMix
   late AnimationController settingsAnim;
   late Animation<double> scaleAnim;
   late Animation<double> opacityAnim;
+
+  final tiltValue = 0.0.obs;
 
   StreamSubscription<AccelerometerEvent>? _accelSub;
 
@@ -40,6 +43,14 @@ class GyroController extends GetxController with GetSingleTickerProviderStateMix
       curve: Curves.easeOut,
       reverseCurve: Curves.easeIn
     );
+  }
+
+  void onGyroUpdate(double raw){
+    double mapped = raw.clamp(-1.0, 1.0);
+
+    tiltValue.value = mapped;
+
+    WebSocketService.to.sendGyro(mapped);
   }
 
   void showSettingsPopUp(){
