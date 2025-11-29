@@ -63,7 +63,7 @@ pub async fn init_vigem_and_start_flusher() {
     }
 
     tokio::spawn(async {
-        let mut ticker = interval(Duration::from_millis(16));
+        let mut ticker = interval(Duration::from_millis(8));
 
         loop {
             ticker.tick().await;
@@ -85,6 +85,8 @@ pub async fn init_vigem_and_start_flusher() {
             let mut global = VIGEM.lock().await;
             if global.is_none() { continue; }
             let ctx = global.as_mut().unwrap();
+
+            // log::info!("LX={}, LY={}", snapshot.0, snapshot.1);
 
             let mut gamepad = XGamepad {
                 left_trigger: (snapshot.4 * 255.0) as u8,
