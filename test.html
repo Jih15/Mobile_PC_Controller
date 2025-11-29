@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>WebSocket Test Client</h2>
+
+<script>
+    const ws = new WebSocket("ws://localhost:9001");
+
+    ws.onopen = () => {
+        console.log("Connected!");
+
+        // Coba kirim event input
+        ws.send(JSON.stringify({
+            event: "keyboard",
+            key: "A",
+            state: "down"
+        }));
+
+        ws.send(JSON.stringify({
+            event: "mouse_move",
+            x: 200,
+            y: 150
+        }));
+
+        ws.send(JSON.stringify({
+            event: "mouse_click",
+            button: "left",
+            state: "down"
+        }));
+    };
+
+    ws.onmessage = (msg) => console.log("Server:", msg.data);
+    ws.onerror = (err) => console.error("Error:", err);
+</script>
+</body>
+</html>

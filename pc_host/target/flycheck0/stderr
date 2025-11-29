@@ -1,58 +1,12 @@
-   0.012553500s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: fingerprint error for pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host)/Check { test: false }/TargetInner { name: "pc_host", doc: true, ..: with_path("D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\main.rs", Edition2021) }
-   0.012621800s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:     err: failed to read `D:\My-Project\flutter\mobile_pc_controller\pc_host\target\debug\.fingerprint\pc_host-2beeafc26a067c73\bin-pc_host`
-
-Caused by:
-    The system cannot find the file specified. (os error 2)
-
-Stack backtrace:
-   0: git_midx_writer_dump
-   1: git_midx_writer_dump
-   2: git_midx_writer_dump
-   3: git_midx_writer_dump
-   4: git_filter_source_repo
-   5: git_filter_source_repo
-   6: git_filter_source_repo
-   7: git_filter_source_repo
-   8: git_filter_source_repo
-   9: git_filter_source_repo
-  10: git_filter_source_repo
-  11: git_libgit2_prerelease
-  12: <unknown>
-  13: <unknown>
-  14: <unknown>
-  15: <unknown>
-  16: git_midx_writer_dump
-  17: git_filter_source_repo
-  18: git_midx_writer_dump
-  19: BaseThreadInitThunk
-  20: RtlUserThreadStart
-   0.022174100s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: fingerprint error for pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host)/Check { test: true }/TargetInner { name: "pc_host", doc: true, ..: with_path("D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\main.rs", Edition2021) }
-   0.022198200s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:     err: failed to read `D:\My-Project\flutter\mobile_pc_controller\pc_host\target\debug\.fingerprint\pc_host-677301496c738d21\test-bin-pc_host`
-
-Caused by:
-    The system cannot find the file specified. (os error 2)
-
-Stack backtrace:
-   0: git_midx_writer_dump
-   1: git_midx_writer_dump
-   2: git_midx_writer_dump
-   3: git_midx_writer_dump
-   4: git_filter_source_repo
-   5: git_filter_source_repo
-   6: git_filter_source_repo
-   7: git_filter_source_repo
-   8: git_filter_source_repo
-   9: git_filter_source_repo
-  10: git_filter_source_repo
-  11: git_libgit2_prerelease
-  12: <unknown>
-  13: <unknown>
-  14: <unknown>
-  15: <unknown>
-  16: git_midx_writer_dump
-  17: git_filter_source_repo
-  18: git_midx_writer_dump
-  19: BaseThreadInitThunk
-  20: RtlUserThreadStart
+   0.252018600s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: stale: changed "D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\input\\vigem_mapper.rs"
+   0.252054600s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:           (vs) "D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\target\\debug\\.fingerprint\\pc_host-13714ebbb719bc59\\dep-bin-pc_host"
+   0.252061100s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 13408858715, nanos: 529202200 } < FileTime { seconds: 13408859045, nanos: 737064100 }
+   0.252403700s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: fingerprint dirty for pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host)/Check { test: false }/TargetInner { name: "pc_host", doc: true, ..: with_path("D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\main.rs", Edition2021) }
+   0.252444700s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\target\\debug\\.fingerprint\\pc_host-13714ebbb719bc59\\dep-bin-pc_host", reference_mtime: FileTime { seconds: 13408858715, nanos: 529202200 }, stale: "D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\input\\vigem_mapper.rs", stale_mtime: FileTime { seconds: 13408859045, nanos: 737064100 } }))
+   0.286322900s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: stale: changed "D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\input\\vigem_mapper.rs"
+   0.286343700s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:           (vs) "D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\target\\debug\\.fingerprint\\pc_host-499eb5e139e75cdf\\dep-test-bin-pc_host"
+   0.286350300s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 13408858715, nanos: 529202200 } < FileTime { seconds: 13408859045, nanos: 737064100 }
+   0.286526600s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint: fingerprint dirty for pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host)/Check { test: true }/TargetInner { name: "pc_host", doc: true, ..: with_path("D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\main.rs", Edition2021) }
+   0.286543400s  INFO prepare_target{force=false package_id=pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host) target="pc_host"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\target\\debug\\.fingerprint\\pc_host-499eb5e139e75cdf\\dep-test-bin-pc_host", reference_mtime: FileTime { seconds: 13408858715, nanos: 529202200 }, stale: "D:\\My-Project\\flutter\\mobile_pc_controller\\pc_host\\src\\input\\vigem_mapper.rs", stale_mtime: FileTime { seconds: 13408859045, nanos: 737064100 } }))
     Checking pc_host v0.1.0 (D:\My-Project\flutter\mobile_pc_controller\pc_host)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.13s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.56s
