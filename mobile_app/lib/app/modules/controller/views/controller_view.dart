@@ -4,16 +4,40 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mobile_app/app/modules/components/custom_progress_line.dart';
 import 'package:mobile_app/app/modules/components/vertical_slider.dart';
-
+import 'package:mobile_app/app/services/websocket_service.dart';
 import '../controllers/gyro_controller.dart';
 
-class ControllerView extends GetView<GyroController> {
+
+class ControllerView extends StatefulWidget {
   const ControllerView({super.key});
+
+  @override
+  State<ControllerView> createState() => _ControllerViewState();
+}
+
+class _ControllerViewState extends State<ControllerView> {
+  // const ControllerView({super.key});
+  final controller = Get.find<GyroController>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // WebSocket Connect
+    WebSocketService.to.connect();
+  }
+
+  @override
+  void dispose(){
+    WebSocketService.to.disconnect();
+    // controller._accelSub?.cancel();
+    super.dispose();
+  }
 
   double _normalize(double raw, double sensitivity) {
     double adjusted = raw * sensitivity;
-    // return (adjusted / 10).clamp(-1.0, 1.0);
-    return adjusted.clamp(-1,1);
+    return (adjusted / 10).clamp(-1.0, 1.0);
+    // return adjusted.clamp(-1,1);
   }
 
   @override
@@ -25,6 +49,7 @@ class ControllerView extends GetView<GyroController> {
         child: Stack(
           children: [
             Column(
+              crossAxisAlignment: .start,
               children: [
                 // Progress line
                 Obx(() {
@@ -37,7 +62,8 @@ class ControllerView extends GetView<GyroController> {
                     curve: Curves.easeOutCubic,
                     tween: Tween(begin: 0, end: targetValue),
                     builder: (context, value, child) {
-                      return GyroProgressLine(value: value);
+                      // return GyroProgressLine(value: value);
+                      return GyroProgressLine(value: controller.tiltValue.value);
                     },
                   );
                 }),
@@ -49,7 +75,7 @@ class ControllerView extends GetView<GyroController> {
                 Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       Row(
                         children: [
@@ -64,7 +90,7 @@ class ControllerView extends GetView<GyroController> {
                                 height: 120,
                                 color: Colors.grey,
                                 child: Center(
-                                  child: Text('data'),
+                                  child: Text('data nih'),
                                 ),
                               ),
                               Gap(24),
