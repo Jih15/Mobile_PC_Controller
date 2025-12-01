@@ -113,8 +113,19 @@ pub async fn init_vigem_and_start_flusher() {
                     "X" => gamepad.buttons.raw |= XButtons::X,
                     "Y" => gamepad.buttons.raw |= XButtons::Y,
 
+                    "UP" => gamepad.buttons.raw |= XButtons::UP,
+                    "LEFT"=> gamepad.buttons.raw |= XButtons::LEFT,
+                    "RIGHT"=> gamepad.buttons.raw |= XButtons::RIGHT,
+                    "DOWN"=> gamepad.buttons.raw |= XButtons::DOWN,
+
+                    "LTHUMB"=> gamepad.buttons.raw |= XButtons::LTHUMB,
+                    "RTHUMB"=> gamepad.buttons.raw |= XButtons::RTHUMB,
+
                     "LB" => gamepad.buttons.raw |= XButtons::LB,
                     "RB" => gamepad.buttons.raw |= XButtons::RB,
+
+                    // "LS" => gamepad.buttons.raw |= XButtons::,
+                    // "RS" => gamepad.buttons.raw |= XButtons::RS,
 
                     "START" => gamepad.buttons.raw |= XButtons::START,
                     "BACK" => gamepad.buttons.raw |= XButtons::BACK,

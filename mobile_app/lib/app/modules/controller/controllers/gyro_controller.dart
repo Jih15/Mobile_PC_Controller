@@ -23,8 +23,15 @@ class GyroController extends GetxController with GetSingleTickerProviderStateMix
 
     // Gyro
     _accelSub = accelerometerEventStream().listen((event) {
-      accelY.value = event.y;
+      // Mapping dengan sensitivity
+      double mapped = (event.y * sensitivity.value).clamp(-1.0, 1.0);
+
+      tiltValue.value = mapped;
+
+      // Kirim ke PC
+      WebSocketService.to.sendGyro(mapped);
     });
+
 
     // Settings Animation
     settingsAnim = AnimationController(

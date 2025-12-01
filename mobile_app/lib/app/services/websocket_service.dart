@@ -9,7 +9,7 @@ class WebSocketService extends GetxService {
   IOWebSocketChannel? _channel;
 
   final isConnected = false.obs;
-  final serverIp = "192.168.1.10".obs; // ubah sesuai IP PC
+  final serverIp = "192.168.1.22".obs; // ubah sesuai IP PC
 
   Future<WebSocketService> init() async {
     connect();
@@ -62,22 +62,30 @@ class WebSocketService extends GetxService {
     }
 
     final encoded = jsonEncode(jsonMap);
-    print("📤 Sending: $encoded");
+    // print("📤 Sending: $encoded");
     _channel!.sink.add(encoded);
+  }
+
+  void disconnect() {
+    if (_channel != null) {
+      _channel!.sink.close(status.normalClosure);
+      isConnected.value = false;
+      print("🔌 Disconnected from WebSocket");
+    }
   }
 
   // Event Sender
 
   void sendGyro(double value) {
     send({
-      "type": "gyro",
+      "type": "Gyro",
       "value": value,
     });
   }
 
   void sendJoystick(double x, double y) {
     send({
-      "type": "joystick",
+      "type": "Joystick",
       "x": x,
       "y": y,
     });
@@ -85,7 +93,7 @@ class WebSocketService extends GetxService {
 
   void sendButton(String key, bool pressed) {
     send({
-      "type": "button",
+      "type": "Button",
       "key": key,
       "pressed": pressed,
     });
@@ -93,14 +101,14 @@ class WebSocketService extends GetxService {
 
   void sendThrottle(double value) {
     send({
-      "type": "throttle",
+      "type": "Throttle",
       "value": value,
     });
   }
 
   void sendBrake(double value) {
     send({
-      "type": "brake",
+      "type": "Brake",
       "value": value,
     });
   }
