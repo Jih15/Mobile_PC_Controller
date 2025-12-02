@@ -10,11 +10,11 @@ pub async fn start_websocket_server() -> anyhow::Result<()> {
     // Start ViGEm flusher
     init_vigem_and_start_flusher().await;
 
-    // let listener = TcpListener::bind("0.0.0.0:9002").await?;
-    let addr = format!("0.0.0.0:{}", WS_PORT);
-    let listener = TcpListener::bind(&addr).await?;
+    let listener = TcpListener::bind("0.0.0.0:9002").await?;
+    // let addr = format!("0.0.0.0:{}", WS_PORT);
+    // let listener = TcpListener::bind(&addr).await?;
 
-    log::info!("🌐 WebSocket listening on ws://{}", addr);
+    // log::info!("🌐 WebSocket listening on ws://{}", addr);
 
     while let Ok((stream, addr)) = listener.accept().await {
         tokio::spawn(async move {

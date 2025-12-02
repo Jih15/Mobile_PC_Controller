@@ -1,121 +1,57 @@
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart' as status;
+import 'package:mobile_app/app/utils/constant.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class WebSocketService extends GetxService {
   static WebSocketService get to => Get.find<WebSocketService>();
 
-  IOWebSocketChannel? _channel;
+  WebSocketChannel? _channel;
 
   final isConnected = false.obs;
-  final serverIp = "192.168.1.22".obs; // ubah sesuai IP PC
 
   Future<WebSocketService> init() async {
-    connect();
+    await connect();
     return this;
   }
 
-  void connect() {
+  Future<void> connect() async {
     try {
-      print("🔌 Connecting to ws://${serverIp.value}:9002 ...");
-
-      _channel = IOWebSocketChannel.connect(
-        "ws://${serverIp.value}:9002",
+      _channel = WebSocketChannel.connect(
+        Uri(
+          scheme: 'ws',
+          host: AppConfig.baseUrl,
+          port: AppConfig.port,
+        ),
       );
 
       isConnected.value = true;
-      print("✅ Connected to WebSocket");
 
       _channel!.stream.listen(
-        (data) {
-          print("📩 Received: $data");
+        (msg) {
+          print("WS recv: $msg");
         },
-        onError: (error) {
-          print("❌ WebSocket Error: $error");
-          reconnect();
-        },
-        onDone: () {
-          print("⚠️ WebSocket closed");
-          reconnect();
+        onDone: () => isConnected.value = false,
+        onError: (e) {
+          isConnected.value = false;
+          print("WS error: $e");
         },
       );
+
     } catch (e) {
-      print("❌ Connect Exception: $e");
-      reconnect();
+      isConnected.value = false;
+      print("WS connect error: $e");
     }
   }
 
-  void reconnect() async {
-    if (isConnected.value == false) return;
-
-    isConnected.value = false;
-    print("🔁 Reconnecting in 2 seconds...");
-    await Future.delayed(const Duration(seconds: 2));
-    connect();
-  }
-
-  void send(dynamic jsonMap) {
-    if (_channel == null || isConnected.value == false) {
-      print("⚠️ WebSocket not connected, cannot send");
-      return;
-    }
-
-    final encoded = jsonEncode(jsonMap);
-    // print("📤 Sending: $encoded");
-    _channel!.sink.add(encoded);
+  void send(Map<String, dynamic> data) {
+    if (_channel == null) return;
+    final jsonData = jsonEncode(data);
+    _channel!.sink.add(jsonData);
   }
 
   void disconnect() {
-    if (_channel != null) {
-      _channel!.sink.close(status.normalClosure);
-      isConnected.value = false;
-      print("🔌 Disconnected from WebSocket");
-    }
-  }
-
-  // Event Sender
-
-  void sendGyro(double value) {
-    send({
-      "type": "Gyro",
-      "value": value,
-    });
-  }
-
-  void sendJoystick(double x, double y) {
-    send({
-      "type": "Joystick",
-      "x": x,
-      "y": y,
-    });
-  }
-
-  void sendButton(String key, bool pressed) {
-    send({
-      "type": "Button",
-      "key": key,
-      "pressed": pressed,
-    });
-  }
-
-  void sendThrottle(double value) {
-    send({
-      "type": "Throttle",
-      "value": value,
-    });
-  }
-
-  void sendBrake(double value) {
-    send({
-      "type": "Brake",
-      "value": value,
-    });
-  }
-
-  @override
-  void onClose() {
-    _channel?.sink.close(status.goingAway);
-    super.onClose();
+    _channel?.sink.close();
+    isConnected.value = false;
   }
 }
