@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobile_app/app/modules/components/custom_progress_line.dart';
 import 'package:mobile_app/app/modules/components/vertical_slider.dart';
 import 'package:mobile_app/app/services/websocket_service.dart';
-import '../controllers/gyro_controller.dart';
+import '../controllers/gyro_view_controller.dart';
 
 
 class ControllerView extends StatefulWidget {
@@ -17,7 +17,7 @@ class ControllerView extends StatefulWidget {
 
 class _ControllerViewState extends State<ControllerView> {
   // const ControllerView({super.key});
-  final controller = Get.find<GyroController>();
+  final controller = Get.find<GyroViewController>();
 
   @override
   void initState() {

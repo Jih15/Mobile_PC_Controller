@@ -68,6 +68,11 @@ pub async fn init_vigem_and_start_flusher() {
         loop {
             ticker.tick().await;
 
+            {
+                let mut s = SHARED_STATE.lock().await;
+                s.tick(0.008);
+            }
+
             let snapshot = {
                 let s = SHARED_STATE.lock().await;
                 // log::info!("Snapshot button state: {:?}", s.buttons);
@@ -84,6 +89,7 @@ pub async fn init_vigem_and_start_flusher() {
 
             let mut global = VIGEM.lock().await;
             if global.is_none() { continue; }
+
             let ctx = global.as_mut().unwrap();
 
             // log::info!("LX={}, LY={}", snapshot.0, snapshot.1);
@@ -105,9 +111,9 @@ pub async fn init_vigem_and_start_flusher() {
             for (key, pressed) in snapshot.6.iter() {
                 if !pressed { continue; }
 
-                let k = key.to_ascii_uppercase();
+                // let k = key.to_ascii_uppercase();
 
-                match k.as_str() {
+                match key.to_ascii_uppercase().as_str() {
                     "A" => gamepad.buttons.raw |= XButtons::A,
                     "B" => gamepad.buttons.raw |= XButtons::B,
                     "X" => gamepad.buttons.raw |= XButtons::X,
