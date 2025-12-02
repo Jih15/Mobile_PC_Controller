@@ -5,13 +5,13 @@ use once_cell::sync::Lazy;
 #[derive(Clone, Copy, Debug)]
 pub enum ResponseCurve {
     Linear,
-    Exponential(f32), // exponent factor > 0 (e.g. 2.0)
+    Exponential(f32),
 }
 
 #[derive(Debug)]
 pub struct AxisState {
-    pub raw: f32,      // last raw input (-1..1 or 0..1)
-    pub filtered: f32, // after smoothing / deadzone / curve
+    pub raw: f32,    
+    pub filtered: f32, 
 }
 
 impl AxisState {

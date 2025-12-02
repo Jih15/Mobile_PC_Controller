@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:mobile_app/app/services/websocket_service.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
-class GyroController extends GetxController with GetSingleTickerProviderStateMixin {
+class GyroViewController extends GetxController with GetSingleTickerProviderStateMixin {
   RxDouble accelY = 0.0.obs;
   RxDouble sensitivity = 1.0.obs;
   var showSettings = false.obs;
