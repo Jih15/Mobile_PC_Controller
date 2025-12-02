@@ -83,7 +83,7 @@ class _GyroProgressLineState extends State<GyroProgressLine>
   late Animation<Color?> colorTween;
 
   double smoothedValue = 0.0;
-  final double smoothingFactor = 0.15; // low-pass filter strength
+  final double smoothingFactor = 0.15; 
 
   @override
   void initState() {
