@@ -43,8 +43,9 @@ class _VerticalSliderPainterState extends State<VerticalSliderPainter>
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 250), // smooth
+      duration: const Duration(milliseconds: 250),
     );
+
   }
 
   void animateBackToZero() {
@@ -83,7 +84,7 @@ class _VerticalSliderPainterState extends State<VerticalSliderPainter>
           });
         },
         onChangeEnd: (val) {
-          animateBackToZero(); // ⬅ otomatis balik
+          animateBackToZero();
         },
         inactiveColor: Colors.transparent,
       ),

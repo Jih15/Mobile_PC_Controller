@@ -113,12 +113,14 @@ class _GyroProgressLineState extends State<GyroProgressLine>
     if (smoothedValue >= 0) {
       colorTween = ColorTween(
         begin: colorTween.value,
-        end: Colors.blue.withOpacity(0.8 + (smoothedValue.abs() * 0.2)),
+        // end: Colors.blue.withOpacity(0.8 + (smoothedValue.abs() * 0.2)),
+        end: Colors.blue.withValues(alpha: 0.8 + (smoothedValue.abs()* 0.2))
       ).animate(colorAnim);
     } else {
       colorTween = ColorTween(
         begin: colorTween.value,
-        end: Colors.red.withOpacity(0.8 + (smoothedValue.abs() * 0.2)),
+        // end: Colors.red.withOpacity(0.8 + (smoothedValue.abs() * 0.2)),
+        end: Colors.red.withValues(alpha: 0.8 + (smoothedValue.abs() * 0.2)),
       ).animate(colorAnim);
     }
 
@@ -165,7 +167,8 @@ class _GyroPainter extends CustomPainter {
     final centerX = size.width / 2;
 
     final basePaint = Paint()
-      ..color = Colors.grey.withOpacity(0.25)
+      // ..color = Colors.grey.withOpacity(0.25)
+      ..color = Colors.grey.withValues(alpha: 0.25)
       ..strokeWidth = size.height
       ..strokeCap = StrokeCap.round;
 
@@ -186,7 +189,8 @@ class _GyroPainter extends CustomPainter {
     // Glow effect (extreme steer)
     if (value.abs() > 0.8) {
       final glowPaint = Paint()
-        ..color = color.withOpacity(0.4)
+        // ..color = color.withOpacity(0.4)
+        ..color = color.withValues(alpha: 0.4)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 15)
         ..strokeWidth = size.height + 10
         ..strokeCap = StrokeCap.round;

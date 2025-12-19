@@ -16,5 +16,4 @@ class InputController extends GetxController {
   void setTriggerPressure(double value) {
     triggerPressure.value = value;
   }
-
 }
