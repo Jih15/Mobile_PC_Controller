@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e553704c-0876-4949-a1c8-8497ae3b6503" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/controllers/input_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/input_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/modules/components/custom_progress_line.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/modules/components/custom_progress_line.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/mobile_app_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/mobile_app_android.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/controllers/input_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/controllers/input/input_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/data/models/input_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/data/models/input_event.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app/modules/components/vertical_slider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/modules/components/vertical_slider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/modules/controller/views/controller_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/modules/controller/views/controller_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/utils/constant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/utils/constant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/.rustc_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pc_host/target/debug/.fingerprint/pc_host-7e0fb0a8963f3b2d/bin-pc_host" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/debug/.fingerprint/pc_host-7e0fb0a8963f3b2d/bin-pc_host" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pc_host/target/debug/.fingerprint/pc_host-7e0fb0a8963f3b2d/bin-pc_host.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/debug/.fingerprint/pc_host-7e0fb0a8963f3b2d/bin-pc_host.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pc_host/target/debug/.fingerprint/pc_host-7e0fb0a8963f3b2d/dep-bin-pc_host" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/debug/.fingerprint/pc_host-7e0fb0a8963f3b2d/dep-bin-pc_host" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/debug/pc_host.d" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/debug/pc_host.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pc_host/target/debug/pc_host.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/debug/pc_host.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pc_host/target/debug/pc_host.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/debug/pc_host.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/flycheck0/stderr" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/flycheck0/stderr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pc_host/target/flycheck0/stdout" beforeDir="false" afterPath="$PROJECT_DIR$/../pc_host/target/flycheck0/stdout" afterDir="false" />
     </list>
@@ -78,10 +84,14 @@
     &quot;accountId&quot;: &quot;86e9cf45-5bc6-4598-b6e6-086060884e1e&quot;
   }
 }</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/android" gradleHome="C:\GradleCache\wrapper\dists\gradle-8.12-all\ejduaidbjup3bmmkhw3rie4zb\gradle-8.12" javaHome="C:\dev\Android\Android Studio\jbr" gradleVersion="8.12" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="35hVfeZEanGPoFQCH1lnDaV3GgW" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" />
     <panes>
@@ -104,20 +114,27 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "vertical__slider",
+    "git-widget-placeholder": "main",
     "io.flutter.project.isFirstOpen": "true",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/mnt/zaqaul_f/My-Project/flutter/mobile_pc_controller/mobile_app",
-    "settings.editor.selected.configurable": "settings.sync",
+    "last_opened_file_path": "D:/Me/My-Project/flutter/mobile_pc_controller/mobile_app",
+    "project.structure.last.edited": "Build Variants",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\My-Project\flutter\mobile_pc_controller\mobile_app\lib\app\controllers\input" />
+    </key>
+  </component>
   <component name="RunManager" selected="Flutter.main.dart">
     <configuration name="android.app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="android.app" />

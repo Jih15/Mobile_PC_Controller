@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/app/modules/components/custom_slider_track_shape.dart';
 
 class VerticalSlider extends StatelessWidget {
-  const VerticalSlider({super.key});
+  final ValueChanged<bool>? onPressed;
+
+  const VerticalSlider({super.key,this.onPressed});
 
   final double sliderWidth = 280;
   final double sliderHeight = 84;
@@ -14,7 +16,10 @@ class VerticalSlider extends StatelessWidget {
       child: SizedBox(
         width: sliderWidth,
         height: sliderHeight,
-        child: VerticalSliderPainter(trackHeight: sliderHeight),
+        child: VerticalSliderPainter(
+          trackHeight: sliderHeight,
+          onPressed: onPressed,
+        ),
       ),
     );
   }
@@ -23,20 +28,27 @@ class VerticalSlider extends StatelessWidget {
 // Painter
 class VerticalSliderPainter extends StatefulWidget {
   final double trackHeight;
+  final ValueChanged<bool>? onPressed;
 
-  const VerticalSliderPainter({super.key, this.trackHeight = 60});
+  const VerticalSliderPainter({
+    super.key,
+    this.trackHeight = 60,
+    this.onPressed
+  });
 
   @override
   State<VerticalSliderPainter> createState() => _VerticalSliderPainterState();
 }
 
-class _VerticalSliderPainterState extends State<VerticalSliderPainter>
-    with SingleTickerProviderStateMixin {
+class _VerticalSliderPainterState extends State<VerticalSliderPainter> with SingleTickerProviderStateMixin {
 
   double sliderValue = 0;
+  bool currentPressed = false;
 
   late AnimationController controller;
   late Animation<double> resetAnimation;
+
+  static const double threshold = 0.2;
 
   @override
   void initState() {
@@ -45,7 +57,15 @@ class _VerticalSliderPainterState extends State<VerticalSliderPainter>
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
+  }
 
+  void _updatePressedState(double val) {
+    final pressed = val > threshold;
+
+    if (pressed != currentPressed) {
+      currentPressed = pressed;
+      widget.onPressed?.call(pressed);
+    }
   }
 
   void animateBackToZero() {
@@ -77,11 +97,12 @@ class _VerticalSliderPainterState extends State<VerticalSliderPainter>
         trackShape: CustomSliderTrackShape(),
       ),
       child: Slider(
+        min: 0,
+        max: 1,
         value: sliderValue,
-        onChanged: (newValue) {
-          setState(() {
-            sliderValue = newValue;
-          });
+        onChanged: (val) {
+          setState(() => sliderValue = val);
+          _updatePressedState(val);
         },
         onChangeEnd: (val) {
           animateBackToZero();
