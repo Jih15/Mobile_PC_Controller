@@ -1,1 +1,1 @@
-pub const WS_PORT: u16 = 7878;
+pub const WS_PORT: u16 = 9002;

@@ -1,27 +1,66 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:get/get.dart';
-import 'package:mobile_app/app/data/models/input_event.dart';
-import '../services/websocket_service.dart';
+import 'package:mobile_app/app/services/websocket_service.dart';
 
-class ConnectionController extends GetxController {
-  final ws = WebSocketService.to;
+class ConnectionController extends GetxController{
+  final _ws = WebSocketService.to;
 
-  void sendGyro(double value) {
-    ws.send(InputEvent.gyro(value).toJson());
+  RxBool get isConnected => _ws.isConnected;
+
+  Timer? _reconnectTimer;
+  static const _reconnectInterval = Duration(seconds: 3);
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    ever(isConnected, (bool connected){
+      if (!connected) {
+        _scheduleReconnect();
+      } else {
+        _cancelReconnect();
+        // log.info('websocket connected');
+      }
+    });
   }
 
-  void sendThrottle(double value) {
-    ws.send(InputEvent.throttle(value).toJson());
+  Future<void> connect()=> _ws.connect();
+
+  void disconnect() {
+    _cancelReconnect();
+    _ws.disconnect();
   }
 
-  void sendBrake(double value) {
-    ws.send(InputEvent.brake(value).toJson());
+  void reconnect(){
+    _ws.disconnect();
+    _ws.connect();
   }
 
-  void sendJoystick(String stick, double x, double y) {
-    ws.send(InputEvent.joystick(stick, x, y).toJson());
+  void _scheduleReconnect() {
+    if (_reconnectTimer?.isActive ?? false) return;
+    // log.info('🔄 Reconnecting in ${_reconnectInterval.inSeconds}s...');
+
+    _reconnectTimer = Timer.periodic(_reconnectInterval, (_) async {
+      if (isConnected.value) {
+        _cancelReconnect();
+        return;
+      }
+      // log.info('🔄 Attempting reconnect...');
+      await _ws.connect();
+    });
   }
 
-  void sendButton(String key, bool pressed) {
-    ws.send(InputEvent.button(key, pressed).toJson());
+  void _cancelReconnect(){
+    _reconnectTimer?.cancel();
+    _reconnectTimer = null;
+  }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+    _cancelReconnect();
   }
 }

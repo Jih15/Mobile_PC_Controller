@@ -27,3 +27,14 @@ vigem-client = "0.1.4"
 once_cell = "1.21.3"
 serialport = "4.8.1"
 
+# System tray
+tray-icon = "0.14"
+
+# Windows autostart via registry
+winreg = "0.52"
+
+# Untuk tray event loop (tray-icon butuh event loop di main thread)
+[target.'cfg(target_os = "windows")'.dependencies]
+windows = { version = "0.58", features = [
+    "Win32_UI_WindowsAndMessaging",
+] }

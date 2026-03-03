@@ -1,89 +1,81 @@
+// lib/app/modules/components/vertical_slider.dart
+//
+// Perubahan dari versi lama:
+// - onValueChanged(double) — kirim nilai 0..1 langsung ke TriggerInput
+//   (bukan lagi onPressed(bool) dengan threshold)
+// - Animasi reset ke 0 saat dilepas tetap ada
+
 import 'package:flutter/material.dart';
-import 'package:mobile_app/app/modules/components/custom_slider_track_shape.dart';
+import 'custom_slider_track_shape.dart';
 
 class VerticalSlider extends StatelessWidget {
-  final ValueChanged<bool>? onPressed;
+  const VerticalSlider({
+    super.key,
+    this.onValueChanged,
+    this.width = 280,
+    this.height = 84,
+  });
 
-  const VerticalSlider({super.key,this.onPressed});
-
-  final double sliderWidth = 280;
-  final double sliderHeight = 84;
+  /// Dipanggil setiap perubahan nilai (0.0 .. 1.0)
+  final ValueChanged<double>? onValueChanged;
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return RotatedBox(
       quarterTurns: -1,
       child: SizedBox(
-        width: sliderWidth,
-        height: sliderHeight,
-        child: VerticalSliderPainter(
-          trackHeight: sliderHeight,
-          onPressed: onPressed,
+        width: width,
+        height: height,
+        child: _SliderBody(
+          trackHeight: height,
+          onValueChanged: onValueChanged,
         ),
       ),
     );
   }
 }
 
-// Painter
-class VerticalSliderPainter extends StatefulWidget {
+class _SliderBody extends StatefulWidget {
+  const _SliderBody({this.trackHeight = 60, this.onValueChanged});
   final double trackHeight;
-  final ValueChanged<bool>? onPressed;
-
-  const VerticalSliderPainter({
-    super.key,
-    this.trackHeight = 60,
-    this.onPressed
-  });
+  final ValueChanged<double>? onValueChanged;
 
   @override
-  State<VerticalSliderPainter> createState() => _VerticalSliderPainterState();
+  State<_SliderBody> createState() => _SliderBodyState();
 }
 
-class _VerticalSliderPainterState extends State<VerticalSliderPainter> with SingleTickerProviderStateMixin {
+class _SliderBodyState extends State<_SliderBody>
+    with SingleTickerProviderStateMixin {
 
-  double sliderValue = 0;
-  bool currentPressed = false;
-
-  late AnimationController controller;
-  late Animation<double> resetAnimation;
-
-  static const double threshold = 0.2;
+  double _value = 0.0;
+  late AnimationController _anim;
+  late Animation<double> _resetAnim;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
+    _anim = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
   }
 
-  void _updatePressedState(double val) {
-    final pressed = val > threshold;
+  void _animateToZero() {
+    _resetAnim = Tween<double>(begin: _value, end: 0.0)
+        .animate(CurvedAnimation(parent: _anim, curve: Curves.easeOut));
 
-    if (pressed != currentPressed) {
-      currentPressed = pressed;
-      widget.onPressed?.call(pressed);
-    }
-  }
-
-  void animateBackToZero() {
-    resetAnimation = Tween<double>(begin: sliderValue, end: 0)
-        .animate(CurvedAnimation(parent: controller, curve: Curves.easeOut));
-
-    controller.forward(from: 0);
-
-    resetAnimation.addListener(() {
-      setState(() {
-        sliderValue = resetAnimation.value;
-      });
+    _anim.forward(from: 0);
+    _resetAnim.addListener(() {
+      setState(() => _value = _resetAnim.value);
+      widget.onValueChanged?.call(_resetAnim.value);
     });
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    _anim.dispose();
     super.dispose();
   }
 
@@ -99,14 +91,12 @@ class _VerticalSliderPainterState extends State<VerticalSliderPainter> with Sing
       child: Slider(
         min: 0,
         max: 1,
-        value: sliderValue,
-        onChanged: (val) {
-          setState(() => sliderValue = val);
-          _updatePressedState(val);
+        value: _value,
+        onChanged: (v) {
+          setState(() => _value = v);
+          widget.onValueChanged?.call(v);
         },
-        onChangeEnd: (val) {
-          animateBackToZero();
-        },
+        onChangeEnd: (_) => _animateToZero(),
         inactiveColor: Colors.transparent,
       ),
     );
