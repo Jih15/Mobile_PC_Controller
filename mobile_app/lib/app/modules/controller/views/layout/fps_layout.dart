@@ -1,13 +1,4 @@
-// lib/app/modules/controller/views/layouts/fps_layout.dart
-//
-// Layout FPS:
-// - Left joystick  → movement (lx, ly)
-// - Right joystick → tambahan kamera (rx, ry) — digabung dengan gyro di InputController
-// - Gyro           → rx + ry aim assist (ditangani InputController)
-// - LT/LB digital (aim / crouch)
-// - RT/RB digital (shoot / sprint)
-// - ABXY (jump, reload, dll)
-
+import 'package:flutter/widget_previews.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
 import 'package:gap/gap.dart';
@@ -33,14 +24,18 @@ class FpsLayout extends StatelessWidget {
         children: [
           // ── LEFT SIDE ────────────────────────────────────────────────────
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(children: [
-                ControllerButton(label: 'LT', onPressed: (v) => trigger.setLB(v)),
-                const Gap(8),
-                ControllerButton(label: 'LB', onPressed: (v) => trigger.setLB(v)),
+                Padding(
+                  padding: EdgeInsets.only(top: 72),
+                  child: ControllerButton(label: 'LT', onPressed: (v) => trigger.setLB(v), size: 72,),
+                ),
+                const Gap(24),
+                ControllerButton(label: 'LB', onPressed: (v) => trigger.setLB(v), size: 72,),
               ]),
-              const Gap(16),
+              // const Gap(16),
+              Spacer(),
               SizedBox(
                 width: 130,
                 height: 130,
@@ -54,27 +49,49 @@ class FpsLayout extends StatelessWidget {
                   listener: (d) => analog.setLeft(d.x, -d.y),
                 ),
               ),
-              const Gap(12),
-              Row(children: [
-                ControllerButton(label: 'BACK',  onPressed: (v) => gamepad.set('BACK', v)),
-                const Gap(8),
-                ControllerButton(label: 'START', onPressed: (v) => gamepad.set('START', v)),
-              ]),
+              const Gap(154),
             ],
           ),
 
           const Spacer(),
-
+          Row(children: [
+            ControllerButton(label: 'BACK',  onPressed: (v) => gamepad.set('BACK', v)),
+            const Gap(8),
+            ControllerButton(label: 'START', onPressed: (v) => gamepad.set('START', v)),
+          ]),
+          const Spacer(),
           // ── RIGHT SIDE ───────────────────────────────────────────────────
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(children: [
-                ControllerButton(label: 'RT', onPressed: (v) => trigger.setRB(v)),
-                const Gap(8),
-                ControllerButton(label: 'RB', onPressed: (v) => trigger.setRB(v)),
+                ControllerButton(label: 'RT', onPressed: (v) => trigger.setRB(v), size: 72,),
+                const Gap(16),
+                Padding(
+                  padding: const EdgeInsets.only(top: 72),
+                  child: ControllerButton(label: 'RB', onPressed: (v) => trigger.setRB(v), size: 72,),
+                ),
               ]),
-              const Gap(16),
+              // const Gap(120),
+              Spacer(),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ControllerButton(label: 'Y', color: Colors.yellow, onPressed: (v) => gamepad.set('Y', v), size: 48,),
+                  const Gap(4),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ControllerButton(label: 'X', color: Colors.blue,  onPressed: (v) => gamepad.set('X', v), size: 48),
+                      const Gap(48),
+                      ControllerButton(label: 'B', color: Colors.red,   onPressed: (v) => gamepad.set('B', v), size: 48),
+                    ],
+                  ),
+                  const Gap(4),
+                  ControllerButton(label: 'A', color: Colors.green, onPressed: (v) => gamepad.set('A', v), size: 48),
+                ],
+              ),
+              const Gap(24),
               SizedBox(
                 width: 130,
                 height: 130,
@@ -88,21 +105,7 @@ class FpsLayout extends StatelessWidget {
                   listener: (d) => analog.setRight(d.x, -d.y),
                 ),
               ),
-              const Gap(12),
-              // ABXY
-              SizedBox(
-                width: 100,
-                height: 100,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(top: 0, left: 35,    child: ControllerButton(label: 'Y', color: Colors.yellow, onPressed: (v) => gamepad.set('Y', v))),
-                    Positioned(bottom: 0, left: 35, child: ControllerButton(label: 'A', color: Colors.green,  onPressed: (v) => gamepad.set('A', v))),
-                    Positioned(left: 0, top: 35,    child: ControllerButton(label: 'X', color: Colors.blue,   onPressed: (v) => gamepad.set('X', v))),
-                    Positioned(right: 0, top: 35,   child: ControllerButton(label: 'B', color: Colors.red,    onPressed: (v) => gamepad.set('B', v))),
-                  ],
-                ),
-              ),
+              Gap(72),
             ],
           ),
         ],
@@ -110,3 +113,20 @@ class FpsLayout extends StatelessWidget {
     );
   }
 }
+
+// void _setupDepedencies(){
+//   if (!Get.isRegistered<AnalogInput>()) Get.put(AnalogInput());
+//   if (!Get.isRegistered<TriggerInput>()) Get.put(TriggerInput());
+//   if (!Get.isRegistered<GamepadInput>()) Get.put(GamepadInput());
+// }
+
+// @Preview(name: 'FPS Layout', size: Size(1024, 600))
+// Widget fpsLayout(){
+//   _setupDepedencies();
+//   return GetMaterialApp(
+//     home: Scaffold(
+//       backgroundColor: Color(0xff1a1c22),
+//       body: FpsLayout(),
+//     ),
+//   );
+// }

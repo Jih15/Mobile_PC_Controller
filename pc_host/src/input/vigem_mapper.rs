@@ -1,6 +1,6 @@
 use std::{sync::Arc, time::Duration};
 
-use futures::lock::Mutex;
+use tokio::sync::Mutex;
 use once_cell::sync::Lazy;
 use tokio::time::interval;
 use vigem_client::{Client, TargetId, XButtons, XGamepad, Xbox360Wired};

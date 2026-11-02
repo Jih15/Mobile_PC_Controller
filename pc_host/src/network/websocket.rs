@@ -1,4 +1,9 @@
 // src/network/websocket.rs
+//
+// Perubahan dari versi sebelumnya:
+// - map_event_to_state dipanggil langsung (TIDAK di-spawn task baru)
+//   Spawn task per event = overhead scheduling + mutex contention tambahan
+//   Cukup await langsung karena handler-nya cepat (hanya set value)
 
 use tokio::net::TcpListener;
 use tokio_tungstenite::accept_async;
@@ -34,8 +39,14 @@ pub async fn start_websocket_server() -> anyhow::Result<()> {
                 if msg.is_text() {
                     let text = msg.to_text().unwrap_or_default();
                     match serde_json::from_str::<ControllerEvent>(text) {
-                        Ok(event) => { tokio::spawn(async move { map_event_to_state(event).await; }); }
-                        Err(e)    => { log::warn!("Invalid JSON from {}: {} | {}", addr, text, e); }
+                        Ok(event) => {
+                            // Langsung await — tidak perlu spawn task baru
+                            // Handler hanya lock mutex + set value = sangat cepat
+                            map_event_to_state(event).await;
+                        }
+                        Err(e) => {
+                            log::warn!("Invalid JSON from {}: {} | {}", addr, text, e);
+                        }
                     }
                 }
             }

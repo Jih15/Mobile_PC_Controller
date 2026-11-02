@@ -1,5 +1,6 @@
 // lib/app/modules/controller/views/layouts/standard_layout.dart
 
+import 'package:flutter/widget_previews.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
 import 'package:gap/gap.dart';
@@ -15,7 +16,7 @@ class StandardLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final analog  = Get.find<AnalogInput>();
+    final analog = Get.find<AnalogInput>();
     final trigger = Get.find<TriggerInput>();
     final gamepad = Get.find<GamepadInput>();
 
@@ -28,17 +29,19 @@ class StandardLayout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // LB / LT digital
-              Row(children: [
-                _DigitalTrigger(
-                  label: 'LT',
-                  onChanged: (v) => trigger.setLB(v),
-                ),
-                const Gap(8),
-                _DigitalTrigger(
-                  label: 'LB',
-                  onChanged: (v) => trigger.setLB(v),
-                ),
-              ]),
+              Row(
+                children: [
+                  _DigitalTrigger(
+                    label: 'LT',
+                    onChanged: (v) => trigger.setLB(v),
+                  ),
+                  const Gap(8),
+                  _DigitalTrigger(
+                    label: 'LB',
+                    onChanged: (v) => trigger.setLB(v),
+                  ),
+                ],
+              ),
               const Gap(16),
 
               // Left joystick
@@ -87,17 +90,19 @@ class StandardLayout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // RB / RT digital
-              Row(children: [
-                _DigitalTrigger(
-                  label: 'RB',
-                  onChanged: (v) => trigger.setRB(v),
-                ),
-                const Gap(8),
-                _DigitalTrigger(
-                  label: 'RT',
-                  onChanged: (v) => trigger.setRB(v),
-                ),
-              ]),
+              Row(
+                children: [
+                  _DigitalTrigger(
+                    label: 'RB',
+                    onChanged: (v) => trigger.setRB(v),
+                  ),
+                  const Gap(8),
+                  _DigitalTrigger(
+                    label: 'RT',
+                    onChanged: (v) => trigger.setRB(v),
+                  ),
+                ],
+              ),
               const Gap(16),
 
               // Right joystick
@@ -143,9 +148,18 @@ class _DigitalTriggerState extends State<_DigitalTrigger> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) { setState(() => _pressed = true);  widget.onChanged(true); },
-      onTapUp:   (_) { setState(() => _pressed = false); widget.onChanged(false); },
-      onTapCancel: () { setState(() => _pressed = false); widget.onChanged(false); },
+      onTapDown: (_) {
+        setState(() => _pressed = true);
+        widget.onChanged(true);
+      },
+      onTapUp: (_) {
+        setState(() => _pressed = false);
+        widget.onChanged(false);
+      },
+      onTapCancel: () {
+        setState(() => _pressed = false);
+        widget.onChanged(false);
+      },
       child: Container(
         width: 52,
         height: 32,
@@ -181,10 +195,10 @@ class _DpadPlaceholder extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Positioned(top: 0,    left: 35, child: _DpadBtn('UP',    gamepad)),
-          Positioned(bottom: 0, left: 35, child: _DpadBtn('DOWN',  gamepad)),
-          Positioned(left: 0,   top: 35,  child: _DpadBtn('LEFT',  gamepad)),
-          Positioned(right: 0,  top: 35,  child: _DpadBtn('RIGHT', gamepad)),
+          Positioned(top: 0, left: 35, child: _DpadBtn('UP', gamepad)),
+          Positioned(bottom: 0, left: 35, child: _DpadBtn('DOWN', gamepad)),
+          Positioned(left: 0, top: 35, child: _DpadBtn('LEFT', gamepad)),
+          Positioned(right: 0, top: 35, child: _DpadBtn('RIGHT', gamepad)),
         ],
       ),
     );
@@ -204,9 +218,18 @@ class _DpadBtnState extends State<_DpadBtn> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) { setState(() => _p = true);  widget.gamepad.set(widget.key_, true); },
-      onTapUp:   (_) { setState(() => _p = false); widget.gamepad.set(widget.key_, false); },
-      onTapCancel: () { setState(() => _p = false); widget.gamepad.set(widget.key_, false); },
+      onTapDown: (_) {
+        setState(() => _p = true);
+        widget.gamepad.set(widget.key_, true);
+      },
+      onTapUp: (_) {
+        setState(() => _p = false);
+        widget.gamepad.set(widget.key_, false);
+      },
+      onTapCancel: () {
+        setState(() => _p = false);
+        widget.gamepad.set(widget.key_, false);
+      },
       child: Container(
         width: 30,
         height: 30,
@@ -223,18 +246,40 @@ class _AbxyPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 100,
-      height: 100,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(top: 0,    left: 35, child: ControllerButton(label: 'Y', color: Colors.yellow,  onPressed: (v) => gamepad.set('Y', v))),
-          Positioned(bottom: 0, left: 35, child: ControllerButton(label: 'A', color: Colors.green,   onPressed: (v) => gamepad.set('A', v))),
-          Positioned(left: 0,   top: 35,  child: ControllerButton(label: 'X', color: Colors.blue,    onPressed: (v) => gamepad.set('X', v))),
-          Positioned(right: 0,  top: 35,  child: ControllerButton(label: 'B', color: Colors.red,     onPressed: (v) => gamepad.set('B', v))),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ControllerButton(label: 'Y', color: Colors.yellow, onPressed: (v) => gamepad.set('Y', v)),
+        const Gap(4),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ControllerButton(label: 'X', color: Colors.blue,  onPressed: (v) => gamepad.set('X', v)),
+            const Gap(4),
+            ControllerButton(label: 'B', color: Colors.red,   onPressed: (v) => gamepad.set('B', v)),
+          ],
+        ),
+        const Gap(4),
+        ControllerButton(label: 'A', color: Colors.green, onPressed: (v) => gamepad.set('A', v)),
+      ],
     );
   }
 }
+
+
+// void _setupDepedencies() {
+//   if (!Get.isRegistered<AnalogInput>()) Get.put(AnalogInput());
+//   if (!Get.isRegistered<TriggerInput>()) Get.put(TriggerInput());
+//   if (!Get.isRegistered<GamepadInput>()) Get.put(GamepadInput());
+// }
+
+// @Preview(name: 'Standart Layout', size: Size(1024, 600))
+// Widget standartlayout() {
+//   _setupDepedencies();
+//   return GetMaterialApp(
+//     home: Scaffold(
+//       backgroundColor: Color(0xff1a1c22),
+//       body: StandardLayout(),
+//     ),
+//   );
+// }
