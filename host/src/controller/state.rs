@@ -85,4 +85,18 @@ impl ControllerState {
             sign * rem.clamp(0.0, 1.0)
         }
     }
+
+    fn apply_response_curve(&self, v: f32)-> f32 {
+        match self.response_curve {
+            ResponseCurve::Linear => v,
+            ResponseCurve::Exponential(exp) if exp > 0.0 => {
+                let sign = v.signum();
+                let mag = v.abs();
+                sign * mag.powf(exp)
+            }
+            _ => v,
+        }
+    }
+
+    
 }
