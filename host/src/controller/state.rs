@@ -1,5 +1,7 @@
-use serde::de::value;
+// use std::os::windows::raw;
 
+use std::sync::LazyLock;
+use tokio::sync::Mutex;
 
 #[derive(Clone, Copy, Debug)]
 pub enum ResponseCurve {
@@ -98,5 +100,46 @@ impl ControllerState {
         }
     }
 
-    
+    fn low_pass_step(&self, raw: f32, filtered: f32)-> f32 {
+        let a = self.smoothing_alpha.clamp(0.0, 1.0);
+        a * raw + (1.0 - a) * filtered
+    }
+
+    pub fn tick(&mut self, dt: f32) {
+        let process_axis = |raw: f32, filtered: f32, state: &ControllerState| -> f32{
+            let after_dead = state.apply_deadzone(raw);
+
+            let mut target= after_dead;
+            if after_dead == 0.0 && filtered != 0.0 && state.auto_center_rate > 0.0 {
+                let decay = state.auto_center_rate * dt;
+                if filtered.abs() <= decay {
+                    target = 0.0;
+                } else {
+                    target = filtered - filtered.signum() * decay;
+                }
+            }
+
+            let smoothed = state.low_pass_step(target, filtered);
+
+            state.apply_response_curve(smoothed)
+        };
+
+        self.left_x.filtered = process_axis(self.left_x.raw, self.left_x.filtered, self);
+        self.left_y.filtered = process_axis(self.left_y.raw, self.left_y.filtered, self);
+        self.right_x.filtered = process_axis(self.right_x.raw, self.right_x.filtered, self);
+        self.right_y.filtered = process_axis(self.right_y.raw, self.right_y.filtered, self);
+
+        let process_trigger = |raw: f32, filtered: f32, state: &ControllerState| ->f32 {
+            let after_dead = if raw.abs() < state.deadzone {0.0} else { raw };
+            let smoothed = state.low_pass_step(after_dead, filtered);
+            state.apply_response_curve(smoothed)
+        };
+
+        self.left_trigger.filtered = process_trigger(self.left_trigger.raw, self.left_trigger.filtered, self);
+        self.right_trigger.filtered = process_trigger(self.right_trigger.raw, self.right_trigger.filtered, self);
+    }
 }
+
+pub static SHARED_STATE: LazyLock<Mutex<ControllerState>> = LazyLock::new(|| {
+    Mutex::new(ControllerState::new())
+});
