@@ -12,6 +12,13 @@ build/
 coverage/
 *.freezed.dart.tmp
 
+# Flutter generated files (nested project)
+**/linux/flutter/generated_plugin_registrant.*
+**/linux/flutter/generated_plugins.cmake
+**/windows/flutter/generated_plugin_registrant.*
+**/windows/flutter/generated_plugins.cmake
+**/macos/Flutter/GeneratedPluginRegistrant.swift
+
 # ==========================================
 # Android
 # ==========================================
